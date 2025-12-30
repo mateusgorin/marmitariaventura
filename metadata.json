@@ -1,0 +1,7 @@
+{
+  "name": "Marmitaria Ventura",
+  "description": "Website oficial da Marmitaria Ventura, com cardápio integrado, nossa história, vídeos e localização.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
