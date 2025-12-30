@@ -105,9 +105,27 @@ const App: React.FC = () => {
             </div>
             
             <div className="flex flex-wrap gap-4 pt-4">
-              <button onClick={() => scrollToSection('order-station')} className="bg-[#f59e0b] text-white px-10 py-4 font-bold text-xs uppercase tracking-widest hover:brightness-110 transition-all rounded-full shadow-lg">Ver Cardápio</button>
-              <button onClick={() => scrollToSection('history-hub')} className="bg-[#F65D94] text-white px-10 py-4 font-bold text-xs uppercase tracking-widest hover:brightness-110 transition-all rounded-full shadow-lg">Nossa História</button>
-              <button onClick={() => scrollToSection('logistics-hub')} className="bg-gray-800 text-white px-10 py-4 font-bold text-xs uppercase tracking-widest hover:brightness-110 transition-all rounded-full shadow-lg">Localização</button>
+              <button 
+                onClick={() => scrollToSection('order-station')} 
+                className="bg-[#f59e0b] text-white px-8 py-4 font-bold text-[10px] uppercase tracking-widest hover:brightness-110 transition-all rounded-full shadow-lg flex items-center gap-2"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 3h18v18H3z"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+                Ver Cardápio
+              </button>
+              <button 
+                onClick={() => scrollToSection('history-hub')} 
+                className="bg-[#F65D94] text-white px-8 py-4 font-bold text-[10px] uppercase tracking-widest hover:brightness-110 transition-all rounded-full shadow-lg flex items-center gap-2"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                Nossa História
+              </button>
+              <button 
+                onClick={() => scrollToSection('logistics-hub')} 
+                className="bg-gray-800 text-white px-8 py-4 font-bold text-[10px] uppercase tracking-widest hover:brightness-110 transition-all rounded-full shadow-lg flex items-center gap-2"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                Localização
+              </button>
             </div>
           </div>
         </div>
