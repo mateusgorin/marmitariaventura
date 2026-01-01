@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { LOGO_URL, ESTABLISHMENT_INFO } from './constants';
 import AIChat from './components/AIChat';
@@ -47,13 +46,13 @@ const App: React.FC = () => {
 
       <main>
         {/* HERO PORTAL */}
-        <section className="relative min-h-screen flex flex-col items-center justify-center pt-20 px-6 overflow-hidden">
+        <section className="relative min-h-[90vh] md:min-h-screen flex flex-col items-center justify-center pt-20 px-6 overflow-hidden">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] pointer-events-none opacity-40">
              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-orange-400 rounded-full blur-[180px] animate-pulse"></div>
              <div className="absolute top-[40%] left-[40%] w-[400px] h-[400px] bg-pink-400 rounded-full blur-[150px] animate-bounce"></div>
           </div>
 
-          <div className="logo-container mb-12 floating relative">
+          <div className="logo-container mb-8 md:mb-12 floating relative">
              <div className="absolute inset-0 ventura-gradient-bg rounded-full blur-[100px] opacity-20 animate-pulse"></div>
              <div className="relative z-10 p-5 md:p-10 rounded-full bg-white/20 backdrop-blur-3xl border border-white/40 shadow-2xl group transition-all duration-700 hover:bg-white/30">
                 <img 
@@ -73,10 +72,10 @@ const App: React.FC = () => {
                <span className="text-sm md:text-xl font-black uppercase tracking-[0.5em] ventura-gradient-text">Marmitaria</span>
                <div className="h-[1px] w-12 bg-gray-300"></div>
             </div>
-            <p className="text-gray-500 text-lg md:text-2xl font-medium max-w-xl mx-auto italic py-6">
+            <p className="text-gray-500 text-lg md:text-2xl font-medium max-w-xl mx-auto italic py-4 md:py-6">
               "Comidinha caseira com qualidade de verdade para o seu dia."
             </p>
-            <div className="pt-4">
+            <div className="pt-2">
               <button 
                 onClick={() => scrollTo('menu')}
                 className="bg-gray-900 text-white px-12 py-6 rounded-full font-black text-xs uppercase tracking-[0.3em] shadow-2xl hover:bg-orange-500 transition-all active:scale-95"
@@ -88,10 +87,10 @@ const App: React.FC = () => {
         </section>
 
         {/* IMMERSIVE MODULES */}
-        <section className="max-w-7xl mx-auto px-6 space-y-24 pb-40">
+        <section className="max-w-7xl mx-auto px-6 space-y-16 md:space-y-24 pb-40">
           
-          {/* Delivery Highlight Banner */}
-          <div className="mt-12 mb-16 relative z-10">
+          {/* Delivery Highlight Banner - Reduced Margin Top */}
+          <div className="mt-4 md:mt-8 mb-16 relative z-10">
             <div className="glass-card p-8 md:p-14 flex flex-col md:flex-row items-center gap-10 md:gap-20 border-white/40 bg-white/20 relative shadow-[0_50px_150px_-40px_rgba(245,158,11,0.2)] group transition-all duration-700">
               <div className="absolute top-0 left-0 w-full h-full ventura-gradient-bg blur-[150px] opacity-5 pointer-events-none"></div>
               
@@ -153,7 +152,7 @@ const App: React.FC = () => {
                   <span className="ventura-gradient-text italic">online.</span>
                 </h2>
                 <div className="mt-6">
-                   <p className="text-[10px] md:text-[13px] font-black uppercase tracking-[0.4em] text-gray-400 max-w-2xl mx-auto leading-relaxed">
+                   <p className="text-[10px] md:text-[13px] font-black uppercase tracking-[0.4em] text-gray-400 max-w-2xl mx-auto leading-relaxed text-center px-4">
                       Faça seu pedido em nossa plataforma e receba no conforto da sua casa
                    </p>
                 </div>
