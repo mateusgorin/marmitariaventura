@@ -91,12 +91,6 @@
       ::-webkit-scrollbar-track { background: #f1f1f1; }
       ::-webkit-scrollbar-thumb { background: #f59e0b; border-radius: 10px; }
     </style>
-    <script>
-      // Garante que o objeto process e env existam para o SDK sem carregar node-domexception
-      window.process = window.process || { env: { API_KEY: "" } };
-      // Força o uso do DOMException nativo do navegador
-      window.DOMException = window.DOMException || Error;
-    </script>
     <script type="importmap">
 {
   "imports": {

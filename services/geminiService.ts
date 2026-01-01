@@ -2,7 +2,7 @@ import { GoogleGenAI } from "@google/genai";
 
 export const getGeminiResponse = async (userMessage: string, chatHistory: {role: 'user' | 'model', parts: {text: string}[]}[]) => {
   try {
-    // Inicialização direta seguindo estritamente as diretrizes da API
+    // Inicialização direta conforme diretrizes do desenvolvedor
     const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
     
     const response = await ai.models.generateContent({
