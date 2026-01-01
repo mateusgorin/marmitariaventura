@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
   <head>
@@ -114,6 +113,10 @@
       ::-webkit-scrollbar-track { background: #f1f1f1; }
       ::-webkit-scrollbar-thumb { background: #f59e0b; border-radius: 10px; }
     </style>
+    <script>
+      // Polyfill básico para process.env para evitar erros de tempo de execução em browsers puros
+      window.process = window.process || { env: { API_KEY: "" } };
+    </script>
     <script type="importmap">
     {
       "imports": {
@@ -128,5 +131,7 @@
   <body>
     <div class="mesh-bg"></div>
     <div id="root"></div>
+    <!-- Script de entrada obrigatório para carregar a aplicação -->
+    <script type="module" src="./index.tsx"></script>
   </body>
 </html>

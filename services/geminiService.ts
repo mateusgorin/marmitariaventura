@@ -1,10 +1,11 @@
-
 import { GoogleGenAI } from "@google/genai";
-
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
 export const getGeminiResponse = async (userMessage: string, chatHistory: {role: 'user' | 'model', parts: {text: string}[]}[]) => {
   try {
+    // Inicialização segura para garantir acesso ao process.env em tempo de execução
+    const apiKey = typeof process !== 'undefined' ? process.env.API_KEY || "" : "";
+    const ai = new GoogleGenAI({ apiKey });
+    
     const response = await ai.models.generateContent({
       model: "gemini-3-flash-preview",
       contents: [
