@@ -2,9 +2,8 @@ import { GoogleGenAI } from "@google/genai";
 
 export const getGeminiResponse = async (userMessage: string, chatHistory: {role: 'user' | 'model', parts: {text: string}[]}[]) => {
   try {
-    // Inicialização segura para garantir acesso ao process.env em tempo de execução
-    const apiKey = typeof process !== 'undefined' ? process.env.API_KEY || "" : "";
-    const ai = new GoogleGenAI({ apiKey });
+    // Inicialização direta seguindo estritamente as diretrizes da API
+    const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
     
     const response = await ai.models.generateContent({
       model: "gemini-3-flash-preview",
@@ -18,7 +17,7 @@ export const getGeminiResponse = async (userMessage: string, chatHistory: {role:
         Informações Importantes:
         - O que somos: Uma marmitaria de comida caseira de qualidade.
         - Onde estamos: QS 106 conjunto 2 lote 01 loja 02, Samambaia Sul, Brasília - DF.
-        - Horário: Segunda a Sábado das 08h ou 09h até as 14h. Domingo fechado.
+        - Horário: Segunda a Sábado das 09h até as 14h. Domingo fechado.
         - Pagamento: Pix, Dinheiro e Cartões.
         - Pedidos: Devem ser feitos clicando no botão de pedidos ou no cardápio digital do site.
         

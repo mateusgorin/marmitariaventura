@@ -23,7 +23,6 @@
 
       .font-display { font-family: 'Playfair Display', serif; }
 
-      /* ANIMAÇÃO DE FUNDO MESH GRADIENT */
       .mesh-bg {
         position: fixed;
         top: 0;
@@ -78,27 +77,6 @@
         transform: rotateY(10deg) rotateX(5deg) scale(1.02);
       }
 
-      .btn-premium {
-        position: relative;
-        overflow: hidden;
-        transition: all 0.4s ease;
-      }
-
-      .btn-premium::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-        transition: 0.6s;
-      }
-
-      .btn-premium:hover::after {
-        left: 100%;
-      }
-
       .floating {
         animation: float 6s ease-in-out infinite;
       }
@@ -114,24 +92,27 @@
       ::-webkit-scrollbar-thumb { background: #f59e0b; border-radius: 10px; }
     </style>
     <script>
-      // Polyfill básico para process.env para evitar erros de tempo de execução em browsers puros
+      // Garante que o objeto process e env existam para o SDK sem carregar node-domexception
       window.process = window.process || { env: { API_KEY: "" } };
+      // Força o uso do DOMException nativo do navegador
+      window.DOMException = window.DOMException || Error;
     </script>
     <script type="importmap">
-    {
-      "imports": {
-        "react/": "https://esm.sh/react@^19.2.3/",
-        "react": "https://esm.sh/react@^19.2.3",
-        "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
-        "@google/genai": "https://esm.sh/@google/genai@^1.34.0"
-      }
-    }
-    </script>
+{
+  "imports": {
+    "react": "https://esm.sh/react@19.0.0",
+    "react-dom": "https://esm.sh/react-dom@19.0.0",
+    "react-dom/client": "https://esm.sh/react-dom@19.0.0/client",
+    "@google/genai": "https://esm.sh/@google/genai@1.34.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react/": "https://esm.sh/react@^19.2.3/"
+  }
+}
+</script>
   </head>
   <body>
     <div class="mesh-bg"></div>
     <div id="root"></div>
-    <!-- Script de entrada obrigatório para carregar a aplicação -->
     <script type="module" src="./index.tsx"></script>
   </body>
 </html>
