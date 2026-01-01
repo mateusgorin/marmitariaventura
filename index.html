@@ -4,57 +4,115 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Marmitaria Ventura - Cozinha Instrumental</title>
+    <title>Marmitaria Ventura | Experiência Gastronômica</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@100;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
     <style>
       :root {
-        --ventura-orange: #f59e0b;
-        --ventura-pink: #F65D94;
-      }
-      body {
-        font-family: 'Montserrat', sans-serif;
-        background-color: #fcfcfc;
-        margin: 0;
-        padding: 0;
-        overflow-x: hidden;
-        color: #1a1a1a;
+        --v-orange: #f59e0b;
+        --v-pink: #F65D94;
+        --v-white: #ffffff;
       }
       
-      h1, h2, h3, h4, .font-serif {
-        font-family: 'Cormorant Garamond', serif;
+      body {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        background-color: #fffaf7;
+        color: #1a1a1a;
+        margin: 0;
+        overflow-x: hidden;
       }
 
-      .font-elegant {
-        font-family: 'Cormorant Garamond', serif;
-      }
+      .font-display { font-family: 'Playfair Display', serif; }
 
-      /* Efeito de Azulejo de Cozinha Suave */
-      .kitchen-tiles {
+      /* ANIMAÇÃO DE FUNDO MESH GRADIENT */
+      .mesh-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
         background-color: #ffffff;
-        background-image:  linear-gradient(#f1f5f9 1px, transparent 1px), linear-gradient(90deg, #f1f5f9 1px, transparent 1px);
-        background-size: 60px 60px;
+        background-image: 
+          radial-gradient(at 0% 0%, rgba(245, 158, 11, 0.15) 0px, transparent 50%),
+          radial-gradient(at 100% 0%, rgba(246, 93, 148, 0.15) 0px, transparent 50%),
+          radial-gradient(at 100% 100%, rgba(245, 158, 11, 0.1) 0px, transparent 50%),
+          radial-gradient(at 0% 100%, rgba(246, 93, 148, 0.1) 0px, transparent 50%);
+        filter: blur(40px);
+        animation: mesh-move 20s ease infinite;
       }
 
-      /* Scrollbar Elegante */
-      ::-webkit-scrollbar { width: 6px; background: #f8fafc; }
-      ::-webkit-scrollbar-thumb {
-        background: #e2e8f0;
-        border-radius: 10px;
-      }
-      ::-webkit-scrollbar-thumb:hover {
-        background: var(--ventura-pink);
+      @keyframes mesh-move {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.1) translate(20px, 20px); }
       }
 
-      .glow-pink { box-shadow: 0 10px 30px -10px rgba(246, 93, 148, 0.4); }
+      .ventura-gradient-text {
+        background: linear-gradient(135deg, #f59e0b 0%, #F65D94 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
 
-      @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(10px); }
-        to { opacity: 1; transform: translateY(0); }
+      .ventura-gradient-bg {
+        background: linear-gradient(135deg, #f59e0b 0%, #ffffff 50%, #F65D94 100%);
       }
-      .animate-fade-in {
-        animation: fadeIn 0.8s ease-out forwards;
+
+      .glass-card {
+        background: rgba(255, 255, 255, 0.4);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.7);
+        box-shadow: 0 8px 32px 0 rgba(245, 158, 11, 0.05);
+        border-radius: 2.5rem;
       }
+
+      .logo-container {
+        position: relative;
+        perspective: 1000px;
+      }
+
+      .logo-main {
+        transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        filter: drop-shadow(0 20px 40px rgba(0,0,0,0.1));
+      }
+
+      .logo-container:hover .logo-main {
+        transform: rotateY(10deg) rotateX(5deg) scale(1.02);
+      }
+
+      .btn-premium {
+        position: relative;
+        overflow: hidden;
+        transition: all 0.4s ease;
+      }
+
+      .btn-premium::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+        transition: 0.6s;
+      }
+
+      .btn-premium:hover::after {
+        left: 100%;
+      }
+
+      .floating {
+        animation: float 6s ease-in-out infinite;
+      }
+
+      @keyframes float {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-20px); }
+        100% { transform: translateY(0px); }
+      }
+
+      ::-webkit-scrollbar { width: 8px; }
+      ::-webkit-scrollbar-track { background: #f1f1f1; }
+      ::-webkit-scrollbar-thumb { background: #f59e0b; border-radius: 10px; }
     </style>
     <script type="importmap">
     {
@@ -66,10 +124,9 @@
       }
     }
     </script>
-  <link rel="stylesheet" href="/index.css">
-</head>
+  </head>
   <body>
+    <div class="mesh-bg"></div>
     <div id="root"></div>
-  <script type="module" src="/index.tsx"></script>
-</body>
+  </body>
 </html>
