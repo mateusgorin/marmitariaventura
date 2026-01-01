@@ -88,10 +88,10 @@ const App: React.FC = () => {
         </section>
 
         {/* IMMERSIVE MODULES */}
-        <section className="max-w-7xl mx-auto px-6 space-y-32 pb-40">
+        <section className="max-w-7xl mx-auto px-6 space-y-24 pb-40">
           
           {/* Delivery Highlight Banner */}
-          <div className="mt-56 mb-16 relative z-10">
+          <div className="mt-12 mb-16 relative z-10">
             <div className="glass-card p-8 md:p-14 flex flex-col md:flex-row items-center gap-10 md:gap-20 border-white/40 bg-white/20 relative shadow-[0_50px_150px_-40px_rgba(245,158,11,0.2)] group transition-all duration-700">
               <div className="absolute top-0 left-0 w-full h-full ventura-gradient-bg blur-[150px] opacity-5 pointer-events-none"></div>
               
@@ -153,7 +153,7 @@ const App: React.FC = () => {
                   <span className="ventura-gradient-text italic">online.</span>
                 </h2>
                 <div className="mt-6">
-                   <p className="text-sm md:text-xl font-bold text-gray-400 tracking-tight max-w-2xl mx-auto italic">
+                   <p className="text-[10px] md:text-[13px] font-black uppercase tracking-[0.4em] text-gray-400 max-w-2xl mx-auto leading-relaxed">
                       Faça seu pedido em nossa plataforma e receba no conforto da sua casa
                    </p>
                 </div>
