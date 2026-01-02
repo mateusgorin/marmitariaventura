@@ -88,15 +88,12 @@
       ::-webkit-scrollbar-thumb { background: #f59e0b; border-radius: 10px; }
     </style>
     
-    <!-- Polyfills Críticos para garantir estabilidade -->
+    <!-- Script mínimo para compatibilidade de API Key -->
     <script>
-      // Garante que 'process' exista para o SDK não quebrar
-      window.process = window.process || { env: { API_KEY: '' } };
-      // Garante que DOMException exista (padrão em browsers modernos, mas previne erros de libs antigas)
-      window.DOMException = window.DOMException || Error;
+      window.process = { env: { API_KEY: '' } };
     </script>
 
-    <!-- Importmap Otimizado: target=esnext remove dependências legadas do Node -->
+    <!-- Importmap corrigido e unificado para evitar conflitos de versão -->
     <script type="importmap">
 {
   "imports": {
