@@ -2,7 +2,7 @@ import { GoogleGenAI } from "@google/genai";
 
 export const getGeminiResponse = async (userMessage: string, chatHistory: {role: 'user' | 'model', parts: {text: string}[]}[]) => {
   try {
-    // Inicialização direta conforme diretrizes do desenvolvedor
+    // Inicialização segura utilizando apenas a API_KEY injetada no ambiente
     const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
     
     const response = await ai.models.generateContent({
@@ -29,6 +29,6 @@ export const getGeminiResponse = async (userMessage: string, chatHistory: {role:
     return response.text;
   } catch (error) {
     console.error("Gemini API Error:", error);
-    return "Ops, tive um probleminha aqui. Pode tentar de novo ou clicar no botão de fazer pedido?";
+    return "Ops, tive um probleminha aqui. Pode entrar em contato conosco pelo WhatsApp clicando no botão abaixo?";
   }
 };
