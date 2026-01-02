@@ -3,142 +3,104 @@
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
-    
-    <!-- TÍTULOS E META TAGS DE COMPARTILHAMENTO -->
-    <title>Marmitaria Ventura</title>
-    <meta name="description" content="Comida caseira de qualidade em Samambaia - DF." />
+    <!-- Removido viewport-fit=cover para evitar que o conteúdo suba para debaixo da barra de status -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     
     <!-- MODO APP (iOS e Android) -->
+    <title>Marmitaria Ventura</title>
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <!-- Alterado para 'default' para que a barra de status do iPhone tenha fundo sólido e não seja transparente -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <meta name="apple-mobile-web-app-title" content="Ventura" />
 
-    <!-- Open Graph -->
+    <!-- SEO & COMPARTILHAMENTO -->
+    <meta name="description" content="Comida caseira de qualidade em Samambaia - DF." />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://marmitariaventura.vercel.app/" />
     <meta property="og:title" content="Marmitaria Ventura" />
-    <meta property="og:description" content="Comida caseira de qualidade em Samambaia - DF." />
-    <meta property="og:image" content="https://i.postimg.cc/XNmM2rQq/marmitariaventura-20251229-0001.jpg?v=3" />
-    
-    <!-- Ícones -->
+    <meta property="og:description" content="Peça sua marmita agora!" />
+    <meta property="og:image" content="https://i.postimg.cc/XNmM2rQq/marmitariaventura-20251229-0001.jpg" />
+
+    <!-- Ícones e Manifesto -->
     <link rel="manifest" href="manifest.json" />
+    <!-- Cor sólida para a barra do navegador -->
     <meta name="theme-color" content="#ffe0c2" />
-    <link rel="icon" type="image/jpeg" href="https://i.postimg.cc/XNmM2rQq/marmitariaventura-20251229-0001.jpg?v=3" />
-    <link rel="apple-touch-icon" href="https://i.postimg.cc/XNmM2rQq/marmitariaventura-20251229-0001.jpg?v=3" />
+    <link rel="icon" type="image/jpeg" href="https://i.postimg.cc/XNmM2rQq/marmitariaventura-20251229-0001.jpg" />
+    <link rel="apple-touch-icon" href="https://i.postimg.cc/XNmM2rQq/marmitariaventura-20251229-0001.jpg" />
 
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=DM+Serif+Display&family=Montserrat:wght@500;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=DM+Serif+Display&family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
+    
     <style>
       :root {
         --brand-orange: #ffe0c2; 
         --brand-pink: #ffccd9;   
-        --brand-accent-orange: #f59e0b;
-        --brand-accent-pink: #F65D94;
-        --brand-dark: #0f172a;
-        --brand-slate: #1e293b;
       }
       
       * {
         -webkit-tap-highlight-color: transparent;
-        -webkit-touch-callout: none; /* Impede menu de contexto ao segurar */
+        -webkit-touch-callout: none;
+        box-sizing: border-box;
       }
 
       html, body {
-        /* Bloqueia o "bounce" e "pull-to-refresh" típico de navegadores */
         overscroll-behavior-y: none;
+        /* Removido position: fixed para evitar conflitos com barras de navegação */
         height: 100%;
         width: 100%;
-        position: fixed; /* Ajuda a manter o "lock" de tela cheia */
-        overflow-y: auto;
-        -webkit-overflow-scrolling: touch;
+        margin: 0;
+        padding: 0;
+        background-color: var(--brand-orange); /* Fundo sólido base */
       }
 
       body {
         font-family: 'Inter', sans-serif;
-        color: var(--brand-slate);
-        -webkit-font-smoothing: antialiased;
-        /* Impede seleção de texto para parecer app */
         user-select: none;
-        /* Garante preenchimento em telas com Notch (iPhone) */
-        padding-top: env(safe-area-inset-top);
-        padding-bottom: env(safe-area-inset-bottom);
+        display: flex;
+        flex-direction: column;
+        overflow-x: hidden;
+      }
+
+      #root {
+        flex: 1;
+        width: 100%;
+        position: relative;
+        z-index: 1;
       }
 
       .font-serif { font-family: 'DM Serif Display', serif; }
       .font-montserrat { font-family: 'Montserrat', sans-serif; }
 
+      /* O degradê agora respeita os limites da janela do navegador */
       .mesh-bg {
         position: fixed;
         top: 0;
         left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
+        right: 0;
+        bottom: 0;
+        z-index: -2;
         background: linear-gradient(135deg, var(--brand-orange) 0%, var(--brand-pink) 100%);
-      }
-
-      .glass-blob {
-        position: fixed;
-        border-radius: 50%;
-        filter: blur(80px);
-        z-index: -1;
-        opacity: 0.65;
-        pointer-events: none;
-      }
-
-      .blob-1 {
-        top: -10%;
-        left: -10%;
-        width: 80vw;
-        height: 80vw;
-        background: radial-gradient(circle, #ffcc80 0%, transparent 80%);
-        animation: float 28s infinite alternate;
-      }
-
-      .blob-2 {
-        bottom: -10%;
-        right: -10%;
-        width: 70vw;
-        height: 70vw;
-        background: radial-gradient(circle, #ffacc6 0%, transparent 80%);
-        animation: float 32s infinite alternate-reverse;
-      }
-
-      @keyframes float {
-        0% { transform: translate(0, 0) scale(1); }
-        100% { transform: translate(30px, 50px) scale(1.1); }
       }
 
       .noise {
         position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
+        inset: 0;
         opacity: 0.05;
         z-index: -1;
         pointer-events: none;
-        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
       }
 
-      @keyframes shimmer {
-        0% { transform: translateX(-150%) skewX(-20deg); }
-        40%, 100% { transform: translateX(150%) skewX(-20deg); }
+      @keyframes reveal {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
       }
-
-      .shimmer-effect::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 50%;
-        height: 100%;
-        background: linear-gradient(to right, transparent, rgba(255,255,255,0.4), transparent);
-        animation: shimmer 6s infinite ease-in-out;
-        pointer-events: none;
-      }
+      .animate-reveal { animation: reveal 0.6s ease-out forwards; }
+      
+      .delay-1 { animation-delay: 0.1s; }
+      .delay-2 { animation-delay: 0.2s; }
+      .delay-3 { animation-delay: 0.3s; }
+      .delay-4 { animation-delay: 0.4s; }
 
       .card-grain {
         position: relative;
@@ -147,37 +109,20 @@
       .card-grain::before {
         content: "";
         position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
+        inset: 0;
         opacity: 0.04;
         pointer-events: none;
-        z-index: 1;
-        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-      }
-
-      @keyframes reveal {
-        from { opacity: 0; transform: translateY(15px); filter: blur(5px); }
-        to { opacity: 1; transform: translateY(0); filter: blur(0); }
-      }
-
-      .animate-reveal {
-        animation: reveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        opacity: 0;
-      }
-
-      .delay-1 { animation-delay: 0.1s; }
-      .delay-2 { animation-delay: 0.2s; }
-      .delay-3 { animation-delay: 0.3s; }
-      .delay-4 { animation-delay: 0.4s; }
-
-      ::-webkit-scrollbar { width: 0px; }
-      
-      a, button {
-        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='nf'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23nf)'/%3E%3C/svg%3E");
       }
     </style>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('data:text/javascript;base64,c2VsZi5hZGRFdmVudExpc3RlbmVyKCdmZXRjaCcsIGV2ID0+IHsgZXYucmVzcG9uZFdpdGgoZmV0Y2goZXYucmVxdWVzdCkpOyB9KTs=')
+            .catch(() => {});
+        });
+      }
+    </script>
     <script>window.process = { env: { API_KEY: '' } };</script>
     <script type="importmap">
 {
@@ -187,16 +132,14 @@
     "react-dom": "https://esm.sh/react-dom@19.0.0?target=esnext",
     "react-dom/client": "https://esm.sh/react-dom@19.0.0/client?target=esnext",
     "@google/genai": "https://esm.sh/@google/genai@latest?target=esnext",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
-    "react/": "https://esm.sh/react@^19.2.3/"
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/"
   }
 }
 </script>
   </head>
   <body>
     <div class="mesh-bg"></div>
-    <div class="blob-1 glass-blob"></div>
-    <div class="blob-2 glass-blob"></div>
     <div class="noise"></div>
     <div id="root"></div>
     <script type="module" src="./index.tsx"></script>
