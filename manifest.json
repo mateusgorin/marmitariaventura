@@ -31,7 +31,9 @@
   ],
   "start_url": "/?source=pwa",
   "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone"],
   "theme_color": "#ffe0c2",
   "background_color": "#ffe0c2",
-  "orientation": "portrait"
+  "orientation": "portrait",
+  "categories": ["food", "shopping"]
 }
