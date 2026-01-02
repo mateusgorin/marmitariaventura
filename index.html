@@ -3,29 +3,26 @@
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
-    <!-- Removido viewport-fit=cover para evitar que o conteúdo suba para debaixo da barra de status -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     
-    <!-- MODO APP (iOS e Android) -->
     <title>Marmitaria Ventura</title>
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <!-- Alterado para 'default' para que a barra de status do iPhone tenha fundo sólido e não seja transparente -->
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <meta name="apple-mobile-web-app-title" content="Ventura" />
 
-    <!-- SEO & COMPARTILHAMENTO -->
     <meta name="description" content="Comida caseira de qualidade em Samambaia - DF." />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Marmitaria Ventura" />
     <meta property="og:description" content="Peça sua marmita agora!" />
     <meta property="og:image" content="https://i.postimg.cc/XNmM2rQq/marmitariaventura-20251229-0001.jpg" />
 
-    <!-- Ícones e Manifesto -->
     <link rel="manifest" href="manifest.json" />
-    <!-- Cor sólida para a barra do navegador -->
-    <meta name="theme-color" content="#ffe0c2" />
+    <meta name="theme-color" content="#fff5ed" />
+    
+    <!-- Favicon / Logo do Site -->
     <link rel="icon" type="image/jpeg" href="https://i.postimg.cc/XNmM2rQq/marmitariaventura-20251229-0001.jpg" />
+    <link rel="shortcut icon" type="image/jpeg" href="https://i.postimg.cc/XNmM2rQq/marmitariaventura-20251229-0001.jpg" />
     <link rel="apple-touch-icon" href="https://i.postimg.cc/XNmM2rQq/marmitariaventura-20251229-0001.jpg" />
 
     <script src="https://cdn.tailwindcss.com"></script>
@@ -33,8 +30,8 @@
     
     <style>
       :root {
-        --brand-orange: #ffe0c2; 
-        --brand-pink: #ffccd9;   
+        --brand-orange-soft: #fff5ed; 
+        --brand-pink-soft: #fff0f3;   
       }
       
       * {
@@ -43,14 +40,9 @@
         box-sizing: border-box;
       }
 
-      html, body {
-        overscroll-behavior-y: none;
-        /* Removido position: fixed para evitar conflitos com barras de navegação */
+      html {
         height: 100%;
-        width: 100%;
-        margin: 0;
-        padding: 0;
-        background-color: var(--brand-orange); /* Fundo sólido base */
+        background-color: #fffaf7;
       }
 
       body {
@@ -59,6 +51,10 @@
         display: flex;
         flex-direction: column;
         overflow-x: hidden;
+        margin: 0;
+        padding: 0;
+        min-height: 100%;
+        background-color: #fffaf7;
       }
 
       #root {
@@ -71,36 +67,66 @@
       .font-serif { font-family: 'DM Serif Display', serif; }
       .font-montserrat { font-family: 'Montserrat', sans-serif; }
 
-      /* O degradê agora respeita os limites da janela do navegador */
+      /* FUNDO DEGRADÊ REFINADO (MESH GRADIENT SUAVE) */
       .mesh-bg {
         position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
+        inset: 0;
         z-index: -2;
-        background: linear-gradient(135deg, var(--brand-orange) 0%, var(--brand-pink) 100%);
+        background-color: #fffaf7;
+        overflow: hidden;
+      }
+
+      .mesh-bg::before {
+        content: "";
+        position: absolute;
+        inset: -50%;
+        width: 200%;
+        height: 200%;
+        background-image: 
+          radial-gradient(circle at 30% 20%, #ffebdb 0%, transparent 50%),
+          radial-gradient(circle at 70% 30%, #ffdee7 0%, transparent 50%),
+          radial-gradient(circle at 40% 80%, #ffebdb 0%, transparent 60%),
+          radial-gradient(circle at 80% 70%, #ffdee7 0%, transparent 50%),
+          radial-gradient(circle at 50% 50%, #fffaf7 0%, transparent 60%);
+        filter: blur(80px) saturate(1.2);
+        opacity: 0.9;
+        animation: drift 30s infinite alternate ease-in-out;
+      }
+
+      /* Camada de suavização extra */
+      .mesh-bg::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: brightness(1.02);
+      }
+
+      @keyframes drift {
+        0% { transform: rotate(0deg) scale(1); }
+        50% { transform: rotate(3deg) scale(1.1); }
+        100% { transform: rotate(-3deg) scale(1); }
       }
 
       .noise {
         position: fixed;
         inset: 0;
-        opacity: 0.05;
+        opacity: 0.04;
         z-index: -1;
         pointer-events: none;
         background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
       }
 
       @keyframes reveal {
-        from { opacity: 0; transform: translateY(10px); }
+        from { opacity: 0; transform: translateY(15px); }
         to { opacity: 1; transform: translateY(0); }
       }
-      .animate-reveal { animation: reveal 0.6s ease-out forwards; }
+      .animate-reveal { animation: reveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
       
-      .delay-1 { animation-delay: 0.1s; }
-      .delay-2 { animation-delay: 0.2s; }
-      .delay-3 { animation-delay: 0.3s; }
-      .delay-4 { animation-delay: 0.4s; }
+      .delay-1 { animation-delay: 0.15s; }
+      .delay-2 { animation-delay: 0.25s; }
+      .delay-3 { animation-delay: 0.35s; }
+      .delay-4 { animation-delay: 0.45s; }
 
       .card-grain {
         position: relative;
@@ -110,9 +136,36 @@
         content: "";
         position: absolute;
         inset: 0;
-        opacity: 0.04;
+        opacity: 0.05;
         pointer-events: none;
         background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='nf'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23nf)'/%3E%3C/svg%3E");
+      }
+
+      /* EFEITO SUNBEAM INTENSO - INTERVALO REDUZIDO */
+      .sunbeam {
+        position: absolute;
+        top: 0;
+        left: -150%;
+        width: 80%;
+        height: 100%;
+        background: linear-gradient(
+          to right,
+          rgba(255, 255, 255, 0) 0%,
+          rgba(255, 255, 255, 0.8) 50%,
+          rgba(255, 255, 255, 0) 100%
+        );
+        transform: skewX(-30deg);
+        animation: sunbeam-pass 8s infinite ease-in-out;
+        pointer-events: none;
+        z-index: 20;
+        mix-blend-mode: overlay;
+      }
+
+      @keyframes sunbeam-pass {
+        0% { left: -150%; opacity: 0; }
+        10% { opacity: 1; }
+        60% { left: 150%; opacity: 0; }
+        100% { left: 150%; opacity: 0; }
       }
     </style>
     <script>
@@ -132,16 +185,18 @@
     "react-dom": "https://esm.sh/react-dom@19.0.0?target=esnext",
     "react-dom/client": "https://esm.sh/react-dom@19.0.0/client?target=esnext",
     "@google/genai": "https://esm.sh/@google/genai@latest?target=esnext",
-    "react/": "https://esm.sh/react@^19.2.3/",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.3/"
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react/": "https://esm.sh/react@^19.2.3/"
   }
 }
 </script>
-  </head>
+  <link rel="stylesheet" href="/index.css">
+</head>
   <body>
     <div class="mesh-bg"></div>
     <div class="noise"></div>
     <div id="root"></div>
     <script type="module" src="./index.tsx"></script>
-  </body>
+  <script type="module" src="/index.tsx"></script>
+</body>
 </html>
