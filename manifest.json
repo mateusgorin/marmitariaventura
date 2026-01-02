@@ -1,0 +1,21 @@
+
+{
+  "short_name": "Ventura",
+  "name": "Marmitaria Ventura",
+  "icons": [
+    {
+      "src": "https://i.postimg.cc/XNmM2rQq/marmitariaventura-20251229-0001.jpg",
+      "type": "image/jpeg",
+      "sizes": "192x192"
+    },
+    {
+      "src": "https://i.postimg.cc/XNmM2rQq/marmitariaventura-20251229-0001.jpg",
+      "type": "image/jpeg",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#ffe0c2",
+  "background_color": "#ffe0c2"
+}
