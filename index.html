@@ -93,16 +93,17 @@
       window.process = { env: { API_KEY: '' } };
     </script>
 
-    <!-- Importmap corrigido e unificado para evitar conflitos de versão -->
+    <!-- Importmap LIMPO e DEFINITIVO -->
     <script type="importmap">
 {
   "imports": {
     "react": "https://esm.sh/react@19.0.0?target=esnext",
+    "react/jsx-runtime": "https://esm.sh/react@19.0.0/jsx-runtime?target=esnext",
     "react-dom": "https://esm.sh/react-dom@19.0.0?target=esnext",
     "react-dom/client": "https://esm.sh/react-dom@19.0.0/client?target=esnext",
     "@google/genai": "https://esm.sh/@google/genai@latest?target=esnext",
-    "react/": "https://esm.sh/react@^19.2.3/",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.3/"
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react/": "https://esm.sh/react@^19.2.3/"
   }
 }
 </script>
