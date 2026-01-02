@@ -1,6 +1,6 @@
 {
   "name": "Marmitaria Ventura",
-  "description": "Website oficial da Marmitaria Ventura, com cardápio integrado, nossa história, vídeos e localização.",
+  "description": "Comida caseira de qualidade",
   "requestFramePermissions": [
     "geolocation"
   ]

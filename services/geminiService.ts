@@ -1,16 +1,10 @@
+
 import { GoogleGenAI } from "@google/genai";
 
 export const getGeminiResponse = async (userMessage: string, chatHistory: {role: 'user' | 'model', parts: {text: string}[]}[]) => {
   try {
-    const apiKey = process.env.API_KEY;
-    
-    // Verificação de segurança para evitar crash se a chave não estiver configurada
-    if (!apiKey) {
-      console.warn("API Key do Gemini não encontrada.");
-      return "Ops! O sistema de chat está passando por uma manutenção rápida. Por favor, faça seu pedido clicando no botão 'Cardápio'.";
-    }
-
-    const ai = new GoogleGenAI({ apiKey });
+    // Fix: Using process.env.API_KEY directly in the constructor as per the coding guidelines
+    const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
     
     const response = await ai.models.generateContent({
       model: "gemini-3-flash-preview",
@@ -33,6 +27,7 @@ export const getGeminiResponse = async (userMessage: string, chatHistory: {role:
       },
     });
 
+    // Fix: Accessing .text as a property as specified in the GenerateContentResponse documentation
     return response.text;
   } catch (error) {
     console.error("Gemini API Error:", error);

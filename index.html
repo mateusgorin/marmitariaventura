@@ -1,27 +1,41 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Marmitaria Ventura | Experiência Gastronômica</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <meta name="theme-color" content="#ffe0c2" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <title>Marmitaria Ventura | Experiência Premium</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=DM+Serif+Display&family=Montserrat:wght@500;600;700;900&display=swap" rel="stylesheet">
     <style>
       :root {
-        --v-orange: #f59e0b;
-        --v-pink: #F65D94;
-        --v-white: #ffffff;
+        --brand-orange: #ffe0c2; 
+        --brand-pink: #ffccd9;   
+        --brand-accent-orange: #f59e0b;
+        --brand-accent-pink: #F65D94;
+        --brand-dark: #0f172a;
+        --brand-slate: #1e293b;
       }
       
-      body {
-        font-family: 'Plus Jakarta Sans', sans-serif;
-        background-color: #fffaf7;
-        color: #1a1a1a;
-        margin: 0;
-        overflow-x: hidden;
+      * {
+        -webkit-tap-highlight-color: transparent;
       }
 
-      .font-display { font-family: 'Playfair Display', serif; }
+      body {
+        font-family: 'Inter', sans-serif;
+        color: var(--brand-slate);
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+        min-height: 100vh;
+        touch-action: manipulation;
+        padding-bottom: env(safe-area-inset-bottom);
+      }
+
+      .font-serif { font-family: 'DM Serif Display', serif; }
+      .font-montserrat { font-family: 'Montserrat', sans-serif; }
 
       .mesh-bg {
         position: fixed;
@@ -30,70 +44,109 @@
         width: 100%;
         height: 100%;
         z-index: -1;
-        background-color: #ffffff;
-        background-image: 
-          radial-gradient(at 0% 0%, rgba(245, 158, 11, 0.15) 0px, transparent 50%),
-          radial-gradient(at 100% 0%, rgba(246, 93, 148, 0.15) 0px, transparent 50%),
-          radial-gradient(at 100% 100%, rgba(245, 158, 11, 0.1) 0px, transparent 50%),
-          radial-gradient(at 0% 100%, rgba(246, 93, 148, 0.1) 0px, transparent 50%);
-        filter: blur(40px);
-        animation: mesh-move 20s ease infinite;
+        background: linear-gradient(135deg, var(--brand-orange) 0%, var(--brand-pink) 100%);
       }
 
-      @keyframes mesh-move {
-        0%, 100% { transform: scale(1); }
-        50% { transform: scale(1.1) translate(20px, 20px); }
+      .glass-blob {
+        position: fixed;
+        border-radius: 50%;
+        filter: blur(80px); /* Reduzido levemente para performance mobile */
+        z-index: -1;
+        opacity: 0.65;
+        pointer-events: none;
       }
 
-      .ventura-gradient-text {
-        background: linear-gradient(135deg, #f59e0b 0%, #F65D94 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+      .blob-1 {
+        top: -10%;
+        left: -10%;
+        width: 80vw;
+        height: 80vw;
+        background: radial-gradient(circle, #ffcc80 0%, transparent 80%);
+        animation: float 28s infinite alternate;
       }
 
-      .glass-card {
-        background: rgba(255, 255, 255, 0.4);
-        backdrop-filter: blur(12px);
-        border: 1px solid rgba(255, 255, 255, 0.7);
-        box-shadow: 0 8px 32px 0 rgba(245, 158, 11, 0.05);
-        border-radius: 2.5rem;
-      }
-
-      .logo-container {
-        position: relative;
-        perspective: 1000px;
-      }
-
-      .logo-main {
-        transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-        filter: drop-shadow(0 20px 40px rgba(0,0,0,0.1));
-      }
-
-      .logo-container:hover .logo-main {
-        transform: rotateY(10deg) rotateX(5deg) scale(1.02);
-      }
-
-      .floating {
-        animation: float 6s ease-in-out infinite;
+      .blob-2 {
+        bottom: -10%;
+        right: -10%;
+        width: 70vw;
+        height: 70vw;
+        background: radial-gradient(circle, #ffacc6 0%, transparent 80%);
+        animation: float 32s infinite alternate-reverse;
       }
 
       @keyframes float {
-        0% { transform: translateY(0px); }
-        50% { transform: translateY(-20px); }
-        100% { transform: translateY(0px); }
+        0% { transform: translate(0, 0) scale(1); }
+        100% { transform: translate(30px, 50px) scale(1.1); }
       }
 
-      ::-webkit-scrollbar { width: 8px; }
-      ::-webkit-scrollbar-track { background: #f1f1f1; }
-      ::-webkit-scrollbar-thumb { background: #f59e0b; border-radius: 10px; }
-    </style>
-    
-    <!-- Script mínimo para compatibilidade de API Key -->
-    <script>
-      window.process = { env: { API_KEY: '' } };
-    </script>
+      .noise {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.05;
+        z-index: -1;
+        pointer-events: none;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+      }
 
-    <!-- Importmap LIMPO e DEFINITIVO -->
+      @keyframes shimmer {
+        0% { transform: translateX(-150%) skewX(-20deg); }
+        40%, 100% { transform: translateX(150%) skewX(-20deg); }
+      }
+
+      .shimmer-effect::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 50%;
+        height: 100%;
+        background: linear-gradient(to right, transparent, rgba(255,255,255,0.4), transparent);
+        animation: shimmer 6s infinite ease-in-out;
+        pointer-events: none;
+      }
+
+      .card-grain {
+        position: relative;
+        overflow: hidden;
+      }
+      .card-grain::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.04;
+        pointer-events: none;
+        z-index: 1;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+      }
+
+      @keyframes reveal {
+        from { opacity: 0; transform: translateY(15px); filter: blur(5px); }
+        to { opacity: 1; transform: translateY(0); filter: blur(0); }
+      }
+
+      .animate-reveal {
+        animation: reveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        opacity: 0;
+      }
+
+      .delay-1 { animation-delay: 0.1s; }
+      .delay-2 { animation-delay: 0.2s; }
+      .delay-3 { animation-delay: 0.3s; }
+      .delay-4 { animation-delay: 0.4s; }
+
+      ::-webkit-scrollbar { width: 0px; }
+      
+      a, button {
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+    </style>
+    <script>window.process = { env: { API_KEY: '' } };</script>
     <script type="importmap">
 {
   "imports": {
@@ -110,6 +163,9 @@
   </head>
   <body>
     <div class="mesh-bg"></div>
+    <div class="blob-1 glass-blob"></div>
+    <div class="blob-2 glass-blob"></div>
+    <div class="noise"></div>
     <div id="root"></div>
     <script type="module" src="./index.tsx"></script>
   </body>
